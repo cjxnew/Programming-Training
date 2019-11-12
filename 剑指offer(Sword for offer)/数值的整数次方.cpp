@@ -1,3 +1,4 @@
+// 给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。保证base和exponent不同时为0
 
 // 方法1：我的思路。若指数为0返回1，若指数为正整数则循环乘base，若指数为负整数则循环乘1/base。
 class Solution {
