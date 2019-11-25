@@ -55,7 +55,28 @@ public:
    }
 };
 
-// 方法2.
+// 方法2. 通过每次更新expectNumber的值来递归求解
+class Solution {
+public:
+    vector<vector<int> > buffer;
+    vector<int> tmp;
+    vector<vector<int> > FindPath(TreeNode* root,int expectNumber) {
+        if(root==NULL)
+            return buffer;
+        tmp.push_back(root->val);
+        if((expectNumber-root->val)==0 && root->left==NULL && root->right==NULL)
+            {
+            buffer.push_back(tmp);
+        }
+        FindPath(root->left,expectNumber-root->val);
+        FindPath(root->right,expectNumber-root->val);
+        if(tmp.size()!=0)
+            tmp.pop_back();
+        return buffer;
+    }
+};
+
+// 方法3.思路和我的方法相仿。见本题python版本答案
 
 
 
