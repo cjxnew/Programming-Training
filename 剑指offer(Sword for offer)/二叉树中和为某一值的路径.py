@@ -17,6 +17,7 @@ class Solution:
             return result
         self.sums = expectNumber
         self.DFS(root, result, [root.val])
+        result.sort(key = lambda i:len(i),reverse=True)
         return result
  
     def DFS(self, root, result, path):
@@ -49,5 +50,6 @@ class Solution2:
                 stack.append((node.left, path + [node.left.val]))
             if node.right != None:
                 stack.append((node.right, path + [node.right.val]))
+        result.sort(key = lambda i:len(i),reverse=True)
         return result
         
