@@ -50,4 +50,69 @@ public:
 	}
 };
 
-// 方法2.
+// 方法2. 感觉没我的简便
+/*
+*解题思路：
+*1、遍历链表，复制每个结点，如复制结点A得到A1，将结点A1插到结点A后面；
+*2、重新遍历链表，复制老结点的随机指针给新结点，如A1.random = A.random.next;
+*3、拆分链表，将链表拆分为原链表和复制后的链表
+*/
+class Solution {
+public:
+    RandomListNode* Clone(RandomListNode* pHead)
+    {
+        if (!pHead) return NULL;
+    nodeClone(pHead);
+    connectRandom(pHead);
+    return reconnect(pHead);
+    }
+     
+     
+//[1]复制结点，插入到原结点后方
+void nodeClone(RandomListNode *head)
+{
+    RandomListNode *pNode = head;
+    while (pNode != NULL)
+    {
+        RandomListNode *pClone = new RandomListNode(pNode->label);
+        pClone->next = pNode->next;
+        pNode->next = pClone;
+        pNode = pClone->next;
+    }
+}
+ 
+//[2]还原新结点的random指针
+void connectRandom(RandomListNode *head)
+{
+    RandomListNode *pNode = head;
+     
+    while (pNode != NULL)
+    {
+        RandomListNode *pClone = pNode->next;
+        if (pNode->random)
+        {
+            pClone->random = pNode->random->next;
+        }
+        pNode = pClone->next;
+    }
+}
+ 
+//[3]拆分
+RandomListNode *reconnect(RandomListNode *head)
+{
+    RandomListNode *pNode = head;
+    RandomListNode *result = head->next;
+    while (pNode != NULL)
+    {
+        RandomListNode *pClone = pNode->next;
+        pNode->next = pClone->next;
+        pNode = pNode->next;
+        if (pNode != NULL)
+            pClone->next = pNode->next;
+         
+    }
+    return result;
+}
+ 
+};
+
