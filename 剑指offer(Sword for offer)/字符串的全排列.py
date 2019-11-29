@@ -32,3 +32,8 @@ class Solution:
             return []
         return sorted(list(set(map(''.join, itertools.permutations(ss)))))
         
+        # 对于输入'1234'，itertools.permutations的输出为[('1', '2', '3', '4'), ('1', '2', '4', '3'), ('1', '3', '2', '4') ... ]
+        # map函数表示把''.join这个函数操作映射到itertools.permutations(ss)的每一个输出结果上，即将其转化为字符串
+        # set里不包含重复元素，旨在去掉重复的全排列字符串
+        # list旨在将结果转化为列表
+        # 最后用sorted按字典序排列
