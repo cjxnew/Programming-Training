@@ -24,5 +24,25 @@ class Solution:
 # 方法2：双指针方法。
 # 当总和小于sum，大指针继续+，否则小指针+
 # 就是相当于有一个窗口，窗口的左右两边就是两个指针，我们根据窗口内值之和来确定窗口的位置和宽度。
-
+class Solution:
+    def FindContinuousSequence(self, tsum):
+        if tsum < 3:
+            return []
+        small = 1
+        big = 2
+        middle = (tsum + 1)>>1
+        curSum = small + big
+        output = []
+        while small < middle:
+            if curSum == tsum:
+                output.append(range(small, big+1))
+                big += 1
+                curSum += big
+            elif curSum > tsum:
+                curSum -= small
+                small += 1
+            else:
+                big += 1
+                curSum += big
+        return output
         
