@@ -13,7 +13,8 @@ struct TreeNode {
     }
 };
 
-// 方法1：我的方法：。
+// 一刷耗时 12mins 较简单
+// 方法1：我的方法。
 // 先用中序遍历，遍历排序二叉树，将得到按元素值升序排列的vector
 // 然后返回第k个vector元素，就完事了
 class Solution {
